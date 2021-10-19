@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="backend [run] - H2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="hunter-app.backend.base.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="app.WebProjectApplication" />
+    <option name="ENABLE_LAUNCH_OPTIMIZATION" value="false" />
+    <option name="ENABLE_JMX_AGENT" value="false" />
+    <option name="ACTIVE_PROFILES" value="h2" />
+    <option name="VM_PARAMETERS" value="-DtestMode=true -DlogDir=/tmp/web-project -Xmx512m -XX:MaxMetaspaceSize=128m" />
+    <option name="ALTERNATIVE_JRE_PATH" value="14" />
+    <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

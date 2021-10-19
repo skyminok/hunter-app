@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="demo-0001" author="skyminok79">
+        <insert tableName="users">
+            <column name="id">8bb4bf7c-b1ed-43d5-836b-65fed4a3a444</column>
+            <column name="created_at" valueComputed="current_timestamp"/>
+            <column name="updated_at" valueComputed="current_timestamp"/>
+            <column name="username">demo_admin</column>
+            <column name="password_encoded">1</column>
+        </insert>
+        <rollback>
+            <delete tableName="users">
+                <where>id='8bb4bf7c-b1ed-43d5-836b-65fed4a3a444'</where>
+            </delete>
+        </rollback>
+        <comment>Test user - demo_admin</comment>
+    </changeSet>
+
+    <changeSet id="demo-0002" author="skyminok79">
+        <insert tableName="users">
+            <column name="id">62898aae-030e-4a0a-a360-26311dbbd1d9</column>
+            <column name="created_at" valueComputed="current_timestamp"/>
+            <column name="updated_at" valueComputed="current_timestamp"/>
+            <column name="username">demo_user</column>
+            <column name="password_encoded">1</column>
+        </insert>
+        <rollback>
+            <delete tableName="users">
+                <where>id='62898aae-030e-4a0a-a360-26311dbbd1d9'</where>
+            </delete>
+        </rollback>
+        <comment>Test user - demo_user</comment>
+    </changeSet>
+</databaseChangeLog>

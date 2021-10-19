@@ -1,0 +1,54 @@
+server {
+    listen 443 ssl http2;
+
+    server_name vm-uwr-test2.rs.ru;
+
+    ssl_certificate /etc/nginx/ssl/vm-uwr-test2.rs.ru.cert;
+    ssl_certificate_key /etc/nginx/ssl/vm-uwr-test2.rs.ru.key;
+
+    # gzip config
+    gzip on;
+    gzip_min_length 1000;
+    gzip_comp_level 5;
+    gzip_proxied any;
+    gzip_vary on;
+    gzip_types text/plain text/css text/javascript image/gif image/png image/jpeg image/svg+xml image/x-icon
+               application/javascript;
+
+    proxy_cache off;
+    proxy_redirect off;
+
+    # API
+    location ~ ^/(api|ws|swagger-ui|v3/api-docs|swagger-resources) {
+        proxy_redirect off;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header If-Modified-Since $http_if_modified_since;
+
+        proxy_connect_timeout 90;
+        proxy_send_timeout 90;
+        proxy_read_timeout 90;
+        proxy_buffer_size 16k;
+        proxy_buffers 32 16k;
+        proxy_busy_buffers_size 64k;
+
+        proxy_pass http://127.0.0.1:8080;
+    }
+
+    # static content (cacheble)
+    location ~* \.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|map)$ {
+        proxy_hide_header 'Cache-Control';
+        add_header 'Cache-Control' "public";
+        expires 1w;
+        proxy_pass http://127.0.0.1:8080;
+    }
+
+    # static content (must-revalidate)
+    location / {
+        proxy_set_header If-Modified-Since $http_if_modified_since;
+        proxy_pass http://127.0.0.1:8080;
+    }
+}
+

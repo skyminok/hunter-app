@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="app [run] - local db" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="hunter-app.app.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="app.WebProjectApplication" />
+    <option name="ENABLE_LAUNCH_OPTIMIZATION" value="false" />
+    <option name="ENABLE_JMX_AGENT" value="false" />
+    <option name="ACTIVE_PROFILES" value="h2" />
+    <option name="VM_PARAMETERS" value="-DtestMode=true -DlogDir=/tmp/web-project -Xmx512m -XX:MaxMetaspaceSize=128m" />
+    <option name="ALTERNATIVE_JRE_PATH" value="14" />
+    <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+    <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <method v="2">
+      <option name="Gradle.BeforeRunTask" enabled="false" tasks="assemble" externalProjectPath="$PROJECT_DIR$/app" vmOptions="" scriptParameters="-Ptarget=prod" />
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,5 @@
+dependencies {
+    compileOnly 'jakarta.persistence:jakarta.persistence-api:2.2.3'
+
+    annotationProcessor 'org.hibernate:hibernate-jpamodelgen:5.4.23.Final'
+}

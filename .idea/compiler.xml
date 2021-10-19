@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
+        </processorPath>
+        <module name="hunter-app.backend.features.user-lib.test" />
+        <module name="hunter-app.backend.features.ws-api.main" />
+        <module name="hunter-app.backend.commons.common-rest.main" />
+        <module name="hunter-app.backend.features.user-lib.main" />
+        <module name="hunter-app.backend.commons.service-api.test" />
+        <module name="hunter-app.core.core-service.main" />
+        <module name="hunter-app.backend.commons.service-api.main" />
+        <module name="hunter-app.backend.features.ws-api.test" />
+        <module name="hunter-app.backend.commons.common-doc.test" />
+        <module name="hunter-app.backend.commons.model.test" />
+        <module name="hunter-app.core.core-service-api.main" />
+        <module name="hunter-app.backend.commons.common-rest.test" />
+        <module name="hunter-app.backend.commons.common-doc.main" />
+        <module name="hunter-app.backend.commons.common-test.main" />
+        <module name="hunter-app.backend.base.test" />
+        <module name="hunter-app.backend.commons.common-test.test" />
+        <module name="hunter-app.backend.security.test" />
+        <module name="hunter-app.backend.security.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/2.5.5/1b42319eedaba1ddf25ec6c5b28b5ed732a8fcf8/spring-boot-configuration-processor-2.5.5.jar" />
+        </processorPath>
+        <module name="hunter-app.backend.base.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/5.4.23.Final/3e647cb924562f25d230bd783dedee6f6c8430cc/hibernate-jpamodelgen-5.4.23.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.4.1.Final/jboss-logging-3.4.1.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-runtime/2.3.1/jaxb-runtime-2.3.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/txw2/2.3.1/txw2-2.3.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/sun/istack/istack-commons-runtime/3.0.7/istack-commons-runtime-3.0.7.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/jvnet/staxex/stax-ex/1.8/stax-ex-1.8.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/sun/xml/fastinfoset/FastInfoset/1.2.15/FastInfoset-1.2.15.jar" />
+        </processorPath>
+        <module name="hunter-app.core.core-model.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/5.4.23.Final/3e647cb924562f25d230bd783dedee6f6c8430cc/hibernate-jpamodelgen-5.4.23.Final.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.4.2.Final/e517b8a93dd9962ed5481345e4d262fdd47c4217/jboss-logging-3.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jaxb/jaxb-runtime/2.3.5/a169a961a2bb9ac69517ec1005e451becf5cdfab/jaxb-runtime-2.3.5.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.xml.bind/jakarta.xml.bind-api/2.3.3/48e3b9cfc10752fba3521d6511f4165bea951801/jakarta.xml.bind-api-2.3.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jaxb/txw2/2.3.5/ec8930fa62e7b1758b1664d135f50c7abe86a4a3/txw2-2.3.5.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.istack/istack-commons-runtime/3.0.12/cbbe1a62b0cc6c85972e99d52aaee350153dc530/istack-commons-runtime-3.0.12.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.activation/jakarta.activation/1.2.2/74548703f9851017ce2f556066659438019e7eb5/jakarta.activation-1.2.2.jar" />
+        </processorPath>
+        <module name="hunter-app.backend.commons.model.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="17">
+      <module name="app" target="17" />
+      <module name="hunter-app.app-backend.main" target="17" />
+      <module name="hunter-app.app-backend.test" target="17" />
+      <module name="hunter-app.backend.commons.main" target="17" />
+      <module name="hunter-app.backend.commons.test" target="17" />
+      <module name="hunter-app.backend.features.main" target="17" />
+      <module name="hunter-app.backend.features.test" target="17" />
+      <module name="hunter-app.backend.main" target="17" />
+      <module name="hunter-app.backend.test" target="17" />
+      <module name="hunter-app.commons.common-rest" target="17" />
+      <module name="hunter-app.commons.common-rest.main" target="17" />
+      <module name="hunter-app.commons.common-rest.test" target="17" />
+      <module name="hunter-app.commons.main" target="17" />
+      <module name="hunter-app.commons.model" target="17" />
+      <module name="hunter-app.commons.model.main" target="17" />
+      <module name="hunter-app.commons.model.test" target="17" />
+      <module name="hunter-app.commons.test" target="17" />
+      <module name="hunter-app.core.main" target="17" />
+      <module name="hunter-app.core.test" target="17" />
+      <module name="hunter-app.features.main" target="17" />
+      <module name="hunter-app.features.test" target="17" />
+      <module name="hunter-app.features.user-lib" target="17" />
+      <module name="hunter-app.features.user-lib.main" target="17" />
+      <module name="hunter-app.features.user-lib.test" target="17" />
+      <module name="hunter-app.main" target="17" />
+      <module name="hunter-app.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

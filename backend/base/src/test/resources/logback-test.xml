@@ -1,0 +1,21 @@
+<configuration debug="true">
+    <contextName>${HOSTNAME}</contextName>
+
+    <property name="ENCODER_PATTERN"
+              value="[%date{HH:mm:ss.SSS}] %-5level %-45.45logger{44} [%8.8thread@%contextName] %X{requestId} %X{sessionId} - %msg"/>
+    <property name="COLORED_ENCODER_PATTERN"
+              value="%gray([%date{HH:mm:ss.SSS}]) %highlight(%-5level) %cyan(%-45.45logger{44}) [%8.8thread@%contextName] %magenta(%X{requestId}) - %msg"/>
+
+    <appender name="CONSOLE_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${COLORED_ENCODER_PATTERN} %blue(\(%file:%line\)) %n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE_LOG"/>
+    </root>
+
+    <logger name="ru.rsb" level="DEBUG"/>
+
+</configuration>

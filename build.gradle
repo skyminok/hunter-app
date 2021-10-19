@@ -1,0 +1,24 @@
+ext {
+    appVersion = '0.1-SNAPSHOT'
+}
+
+subprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            failOnVersionConflict()
+            preferProjectModules()
+        }
+    }
+}
+
+allprojects { it ->
+    it.setVersion("${appVersion}")
+    wrapper {
+        distributionUrl = 'https://services.gradle.org/distributions/gradle-7.2-all.zip'
+    }
+}

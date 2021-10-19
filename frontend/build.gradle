@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id "com.github.node-gradle.node" version "3.0.1"
+    id 'idea'
+}
+
+node {
+    version = '14.18.1'
+    download = true
+}
+
+idea {
+    module {
+        sourceDirs += file('build/resources/main')
+    }
+}
+
+boolean isProdTarget() {
+    return project.hasProperty('target') && project.property('target') == 'prod'
+}
+
+jar {
+    dependsOn npmInstall
+    if (isProdTarget()) {
+        dependsOn npm_run_build
+    } else {
+        dependsOn npm_run_buildDev
+    }
+}
+
+test {
+    dependsOn npm_run_test
+}
+
+check {
+    dependsOn npm_run_lint
+}

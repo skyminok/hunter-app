@@ -1,0 +1,39 @@
+//file:noinspection GradlePackageUpdate
+plugins {
+    id 'java'
+    id 'org.liquibase.gradle' version '2.0.4'
+}
+
+dependencies {
+
+    // версия Liquibase >=4.4.0 некорректно игнорирует параметр outputFile + сейчас в текущей версии
+    // Spring Boot используется именно такая версия
+    liquibaseRuntime 'org.liquibase:liquibase-core:4.3.+'
+    liquibaseRuntime 'javax.xml.bind:jaxb-api:2.3.1'
+    liquibaseRuntime 'org.slf4j:slf4j-api:1.7.25'
+    liquibaseRuntime 'org.yaml:snakeyaml:1.29'
+
+    liquibaseRuntime 'com.h2database:h2:1.4.200'
+    liquibaseRuntime project(':backend:db')
+}
+
+liquibase {
+    activities {
+        main {
+            changeLogFile 'classpath:/db-migration/changelog-master.xml'
+            url "jdbc:h2:file:${project.buildDir}/resources/main/test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE"
+            driver 'org.h2.Driver'
+            contexts 'main,demo'
+            username 'sa'
+            password ''
+            logLevel 'info'
+        }
+    }
+    runList = 'main'
+}
+
+jar.dependsOn update
+
+tasks.findByName('update').configure {
+    dependsOn configurations.liquibaseRuntime
+}

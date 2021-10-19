@@ -1,0 +1,48 @@
+def featureModules = rootProject.subprojects.find { p -> p.name == 'features' }.subprojects
+
+dependencies {
+    // project modules
+    runtimeOnly project(':backend:db')
+    implementation project(':backend:commons:model')
+    runtimeOnly project(':core:core-service')
+    implementation project(':backend:commons:common-rest')
+    implementation project(':backend:security')
+
+    // all feature modules are included automatically
+    implementation featureModules
+
+    // Spring Framework
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // utils
+    runtimeOnly 'org.codehaus.janino:janino'
+    runtimeOnly 'org.liquibase:liquibase-core'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+
+    // Swagger documentation
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+    runtimeOnly "io.springfox:springfox-bean-validators:3.0.0"
+    runtimeOnly 'io.springfox:springfox-swagger-ui:3.0.0'
+
+    // devtools
+    compileOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // Swagger API docs
+    implementation project(':backend:commons:common-doc')
+}
+
+
+processResources {
+    filesMatching('**version.properties') {
+        expand(
+                'projectVersion': "0.1-SNAPSHOT",
+                'gitHashFull': '7f0d1523-186a-488d-b5b0-ae292842eadc',
+                'gitHash': '8413701a-2933-43f6-997c-5756d9d7aba2',
+                'gitBranch': 'master',
+        )
+    }
+}

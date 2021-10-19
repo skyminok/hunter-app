@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   logicalFilePath="db-migration/main"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="0001" author="skyminok79">
+        <createTable tableName="users">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(256)" remarks="User login">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_users"/>
+            </column>
+            <column name="password_encoded" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_salt" type="varchar(256)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0002" author="skyminok79">
+        <createTable tableName="afc_request">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" primaryKeyName="pk_afc_request"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source_request" type="clob">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

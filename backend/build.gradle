@@ -1,0 +1,158 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
+    id "com.adarshr.test-logger" version "2.1.1"
+    id "com.github.spotbugs" version "4.7.6" apply false
+}
+
+subprojects { subproject ->
+
+    if (!(subproject.name in ['features', 'commons', 'db', 'test-db'])) {
+        apply plugin: 'java'
+        apply plugin: 'io.spring.dependency-management'
+        apply plugin: 'java-library'
+        apply plugin: 'jacoco'
+        apply plugin: "com.adarshr.test-logger"
+        apply plugin: 'pmd'
+        apply plugin: 'com.github.spotbugs'
+
+        subproject.version = appVersion
+
+        println subproject
+
+        compileJava {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+            options.incremental = true
+        }
+
+        ext {
+            springBootVersion = '2.5.5'
+        }
+
+        dependencyManagement {
+            imports {
+                mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+            }
+        }
+
+        dependencies {
+            // utils
+            annotationProcessor 'org.projectlombok:lombok'
+            compileOnly 'org.projectlombok:lombok'
+
+            // test
+            testImplementation('org.springframework.boot:spring-boot-starter-test') {
+                exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+            }
+            testAnnotationProcessor 'org.projectlombok:lombok'
+            testCompileOnly 'org.projectlombok:lombok'
+
+            compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}"
+        }
+
+        tasks.withType(JavaCompile) {
+            options.incremental = true // one flag, and things will get MUCH faster
+            options.encoding = 'UTF-8'
+        }
+
+        compileTestJava {
+            options.incremental = true
+        }
+
+        test {
+            useJUnitPlatform()
+            maxHeapSize = '1024m'
+            minHeapSize = '1024m'
+        }
+
+        jacoco {
+            toolVersion = "0.8.7"
+            reportsDirectory = file("$buildDir/reports/jacoco")
+        }
+
+        jacocoTestReport {
+            reports {
+                xml.getRequired().set(true)
+                csv.getRequired().set(false)
+                html.getRequired().set(true)
+            }
+        }
+
+        test {
+            finalizedBy jacocoTestReport // report is always generated after tests run
+        }
+
+        jacocoTestReport {
+            dependsOn test // tests are required to run before generating the report
+        }
+
+        testlogger {
+            // pick a theme - mocha, standard, plain, mocha-parallel, standard-parallel or plain-parallel
+            theme 'mocha'
+
+            // set to false to disable detailed failure logs
+            showExceptions true
+
+            // set to false to hide stack traces
+            showStackTraces true
+
+            // set to true to remove any filtering applied to stack traces
+            showFullStackTraces false
+
+            // set to false to hide exception causes
+            showCauses true
+
+            // set threshold in milliseconds to highlight slow tests
+            slowThreshold 2000
+
+            // displays a breakdown of passes, failures and skips along with total duration
+            showSummary true
+
+            // set to true to see simple class names
+            showSimpleNames false
+
+            // set to false to hide passed tests
+            showPassed true
+
+            // set to false to hide skipped tests
+            showSkipped true
+
+            // set to false to hide failed tests
+            showFailed true
+
+            // enable to see standard out and error streams inline with the test results
+            showStandardStreams false
+
+            // set to false to hide passed standard out and error streams
+            showPassedStandardStreams true
+
+            // set to false to hide skipped standard out and error streams
+            showSkippedStandardStreams true
+
+            // set to false to hide failed standard out and error streams
+            showFailedStandardStreams true
+        }
+
+        spotbugs {
+            toolVersion = '4.4.2'
+            showStackTraces = true
+            excludeFilter.set(file("${rootProject.projectDir}/spotbugs-filter.xml"))
+        }
+
+        spotbugsMain {
+            group = 'verification'
+        }
+
+        pmdMain {
+            group = 'verification'
+        }
+
+        spotbugsTest {
+            group = 'verification'
+        }
+
+        pmdTest {
+            group = 'verification'
+        }
+    }
+}

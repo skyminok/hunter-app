@@ -1,0 +1,42 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'hunter-app'
+
+// final artifact
+include 'app'
+
+// front-end
+include 'frontend'
+
+// core modules
+include 'core'
+include 'core:core-model'
+include 'core:core-service'
+include 'core:core-service-api'
+
+// backend
+include 'backend'
+include 'backend:base'
+include 'backend:security'
+
+// commons
+include 'backend:commons'
+include 'backend:commons:model'
+include 'backend:commons:service-api'
+include 'backend:commons:common-rest'
+include 'backend:commons:common-test'
+include 'backend:commons:common-doc'
+
+// features
+include 'backend:features'
+include 'backend:features:user-lib'
+include 'backend:features:ws-api'
+
+// database changelog
+include 'backend:db'
+include 'backend:test-db'

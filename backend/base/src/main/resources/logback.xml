@@ -1,0 +1,90 @@
+<configuration debug="false">
+    <if condition='isDefined("serverName")'>
+        <then>
+            <contextName>${serverName}</contextName>
+        </then>
+        <else>
+            <contextName>${HOSTNAME}</contextName>
+        </else>
+    </if>
+
+    <if condition='isDefined("logDir") &amp;&amp; property("logDir") != null'>
+        <then>
+            <property name="PATH_LOG" value="${logDir}"/>
+        </then>
+        <else>
+            <property name="PATH_LOG" value="./log"/>
+        </else>
+    </if>
+
+    <property name="FILE_NAME" value="${PATH_LOG}"/>
+    <property name="FILE_PATTERN" value="%d{yyyy-MM-dd}.%i"/>
+    <property name="MAX_HISTORY" value="31"/>
+    <property name="MAX_FILE_SIZE" value="50MB"/>
+    <property name="MAX_TOTAL_SIZE" value="1GB"/>
+    <property name="ENCODER_PATTERN"
+              value="[%date{HH:mm:ss.SSS}] %-5level %-55.55logger{54} [%8.8thread] %X{requestId} %X{sessionId} - %msg"/>
+    <property name="COLORED_ENCODER_PATTERN"
+              value="%gray([%date{HH:mm:ss.SSS}]) %highlight(%-5level) %cyan(%-55.55logger{54}) [%8.8thread] %magenta(%X{requestId}) - %msg"/>
+
+
+    <if condition='!"true".equals(p("testMode"))'>
+        <then>
+            <appender name="FILE_LOG"
+                      class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${FILE_NAME}.log</file>
+                <append>true</append>
+                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                    <fileNamePattern>${PATH_LOG}/eurion-${FILE_PATTERN}.log.gz</fileNamePattern>
+                    <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+                    <maxHistory>${MAX_HISTORY}</maxHistory>
+                    <totalSizeCap>${MAX_TOTAL_SIZE}</totalSizeCap>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>${ENCODER_PATTERN}%n</pattern>
+                </encoder>
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>DEBUG</level>
+                </filter>
+            </appender>
+
+            <appender name="ERROR_FILE_LOG"
+                      class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${FILE_NAME}-error.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                    <fileNamePattern>${PATH_LOG}/eurion-error-${FILE_PATTERN}.log.gz</fileNamePattern>
+                    <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+                    <maxHistory>${MAX_HISTORY}</maxHistory>
+                    <totalSizeCap>${MAX_TOTAL_SIZE}</totalSizeCap>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>${ENCODER_PATTERN}%n</pattern>
+                </encoder>
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>WARN</level>
+                </filter>
+            </appender>
+        </then>
+        <else>
+            <appender name="CONSOLE_LOG" class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                    <pattern>${COLORED_ENCODER_PATTERN} %blue(\(%file:%line\)) %n</pattern>
+                </encoder>
+            </appender>
+        </else>
+    </if>
+
+    <root level="DEBUG">
+        <if condition='!"true".equals(p("testMode"))'>
+            <then>
+                <appender-ref ref="FILE_LOG"/>
+                <appender-ref ref="ERROR_FILE_LOG"/>
+            </then>
+            <else>
+                <appender-ref ref="CONSOLE_LOG"/>
+            </else>
+        </if>
+    </root>
+
+
+</configuration>

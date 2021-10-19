@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '2.5.5'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+description 'Main artifact'
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    runtimeOnly project(':frontend')
+    implementation project(':backend:base')
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+
+def appMainClass = 'app.WebProjectApplication'
+
+bootJar {
+    mainClassName appMainClass
+    archiveFileName = 'hunter-app.jar'
+}
+
+bootRun {
+    getMainClass().set(appMainClass)
+    systemProperty 'testMode', 'true'
+    systemProperty 'spring.profiles.active', 'h2'
+    dependsOn assemble
+}
+

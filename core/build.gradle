@@ -1,0 +1,46 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+subprojects { subproject ->
+    if (!(subproject.name in ['core', 'features', 'commons'])) {
+        apply plugin: 'java'
+        apply plugin: 'io.spring.dependency-management'
+        apply plugin: 'java-library'
+        apply plugin: 'pmd'
+
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+
+        repositories {
+            mavenCentral()
+        }
+
+        configurations.all {
+            resolutionStrategy {
+                failOnVersionConflict()
+            }
+        }
+
+        dependencies {
+            // utils
+            annotationProcessor 'org.projectlombok:lombok:1.18.20'
+            compileOnly 'org.projectlombok:lombok:1.18.20'
+        }
+
+        tasks.withType(JavaCompile) {
+            options.incremental = true // one flag, and things will get MUCH faster
+            options.encoding = 'UTF-8'
+        }
+
+        test {
+            useJUnitPlatform()
+            testLogging {
+                events "started", "passed", "skipped", "failed"
+                exceptionFormat 'full'
+            }
+            maxHeapSize = '1024m'
+            minHeapSize = '1024m'
+        }
+    }
+}
